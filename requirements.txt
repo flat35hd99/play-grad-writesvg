@@ -1,2 +1,1 @@
-certifi @ file:///work/ci_py311/certifi_1676822443922/work/certifi
 svgwrite==1.4.3
