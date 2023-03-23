@@ -1,2 +1,5 @@
 *.svg
 dist/
+
+# Intermediate target files
+directory
