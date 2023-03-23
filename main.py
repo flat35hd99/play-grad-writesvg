@@ -24,7 +24,7 @@ dwg.defs.add(dwg.style("""\
   }
 """))
 
-dwg.add(dwg.rect(insert=(0,0), size=('100%', '100%'), fill='black'))
+# dwg.add(dwg.rect(insert=(0,0), size=('100%', '100%'), fill='black'))
 
 def get_random_color(base_color_code):
     rgb_code = base_color_code
@@ -35,7 +35,7 @@ def get_random_color(base_color_code):
     b = int(rgb_code[4:6], 16)
 
     # ランダムなずれの最大値
-    max_shift = 20
+    max_shift = 100
 
     r_shift = random.randint(-max_shift, max_shift)
     g_shift = random.randint(-max_shift, max_shift)
@@ -46,12 +46,10 @@ def get_random_color(base_color_code):
     g_new = max(0, min(255, g + g_shift))
     b_new = max(0, min(255, g + b_shift))
 
-    return hex(r_new)[2:] + hex(g_new)[2:] + hex(b_new)[2:]
+    return hex(r_new)[2:].zfill(2) + hex(g_new)[2:].zfill(2) + hex(b_new)[2:].zfill(2)
 
 # 各長方形のグラデーションの色を定義
-colors = [
-    ("#C030C0", "#AA0000"),
-] * 100
+colors = [(f"#{get_random_color('00FF00')}", f"#{get_random_color('FF0000')}") for _ in range(100)]
 
 # 長方形を描画する関数
 def draw_rect(x, y, start_color, end_color):
